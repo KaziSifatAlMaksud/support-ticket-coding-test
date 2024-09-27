@@ -22,8 +22,9 @@ class AdminController extends Controller{
         return view('admin.issue_detail', compact('user')); 
     }
      public function show($id){
+        $response = Response::where('ticket_id', $id)->get();
         $ticket = CustomerTicket::with('customerUser')->findOrFail($id);
-       return view('admin.issue_detail', ['ticket' => $ticket,'user' => $ticket->customerUser,]); 
+       return view('admin.issue_detail', ['ticket' => $ticket,'user' => $ticket->customerUser, 'responses' => $response]); 
     }
 
 

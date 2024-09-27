@@ -25,7 +25,18 @@ Route::get('/', function () {
 // Authenticated User Routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $user = Auth::user();
+
+        if ($user) {
+            // Check the role (assuming 1 is admin)
+            if ($user->role == 1) {
+                return redirect()->route('admin.dashboard'); // Redirect to admin dashboard
+            } else {
+                return redirect()->route('customer.dashboard'); // Redirect to customer dashboard
+            }
+        }
+
+        return redirect()->route('home')->with('error', 'You must be logged in to access the dashboard.');
     })->name('dashboard');
 // Profile Management
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

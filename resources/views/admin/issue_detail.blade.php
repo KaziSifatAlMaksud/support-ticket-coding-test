@@ -63,6 +63,35 @@
                     </div>
                 </div>
 
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
+                    <div class="p-6 text-gray-900">
+                        <h2 class="text-xl font-semibold text-gray-900 mb-6">Response From Admin: </h2>
+                       @php
+                             $i = 1;
+                       @endphp
+                      
+                    @foreach($responses as $key => $response)
+
+                        <div class="space-y-4 mb-4">
+                            <div class="flex items-center">
+                                <span class="font-medium text-gray-700 w-40">#SI:</span>
+                                <span class="text-gray-900">{{ $i++ }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-medium text-gray-700 w-40">Admin Response:</span>
+                                <span class="text-gray-900">{{ $response->response }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-medium text-gray-700 w-40">Response Time:</span>
+                                <span class="text-gray-900">{{ $response->created_at }}</span>
+                            </div>    
+                            <hr>                
+                        </div>
+                   
+                    @endforeach
+                    </div>
+                </div>
+
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
